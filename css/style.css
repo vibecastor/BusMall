@@ -1,0 +1,14 @@
+img {
+  border: 20px solid #444;
+  max-height: 150px;
+  max-width: 25%;
+  margin: 1.5%;
+  vertical-align: middle;
+}
+
+li {
+  list-style: none;
+  padding: 5px;
+  border-radius: 25px;
+  margin: 5px;
+  width: 75%;
