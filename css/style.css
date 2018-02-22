@@ -1,7 +1,27 @@
+body {
+  background-color: gray;
+}
+
+h1 {
+  background-color: red;
+  font-size: 50px;
+  color: white;
+}
+
+p {
+  font-size: 25px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+section {
+  background-color: whitesmoke;
+  
+}
+
 img {
   border: 20px solid #444;
-  max-height: 150px;
-  max-width: 25%;
+  max-height: 250px;
+  max-width: 50%;
   margin: 1.5%;
   vertical-align: middle;
 }
@@ -9,6 +29,7 @@ img {
 li {
   list-style: none;
   padding: 5px;
-  border-radius: 25px;
+  border-radius: 15px;
   margin: 5px;
-  width: 75%;
+  width: 85%;
+}
