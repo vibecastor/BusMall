@@ -2,11 +2,11 @@
 
 Product.names = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 //The main global array that stores the instances of Product.
-var products = [];
+Product.products = [];
 //An array to store the number of pics viewed
 Product.viewed = [];
 //collects 25 clicks
-Product.clicked = []; 
+Product.clicked = 0; 
 
 // global var for the DOM pointing to a div container
 Product.container = document.getElementById('container');
@@ -19,7 +19,7 @@ function Product(name, filePath) {
   this.filePath = filePath;
   this.clicks = 0;
   this.views = 0;
-  products.push(this);
+  Product.products.push(this);
   // console.log('New product instance ' + name + ' created.');
 }
 
@@ -48,7 +48,7 @@ new Product('wine-glass', 'img/wine-glass.jpg');
 //a function to call index numbers from 
 
 function randomProduct() {
-  return Math.floor(Math.random() * products.length);
+  return Math.floor(Math.random() * Product.products.length);
   // old random function
   // var randomProduct = Math.floor(Math.random() * products.length);
   // return randomProduct;
@@ -64,15 +64,16 @@ function randomProduct() {
     }
   for (var i = 0; i < 3; i++) {
     var placeHolder = Product.viewed.shift();    
-    productList[i].src = products[placeHolder].filePath;
-    productList[i].alt = products[placeHolder].name;
-    productList[i].title = products[placeHolder].name; 
-    products[placeHolder].viewed += 1;
+    productList[i].src = Product.products[placeHolder].filePath;
+    productList[i].alt = Product.products[placeHolder].name;
+    productList[i].title = Product.products[placeHolder].name; 
+    Product.products[placeHolder].views += 1;
   }  
 }
 
 //click event handler from tuesday's class, 
   function handleClick(event) {
+    console.log(event.target.alt, 'was clicked');
     if (event.target === Product.container) {
       return alert('Click on a picture!');
     }
@@ -82,19 +83,19 @@ function randomProduct() {
     showList();
   }
   Product.clicked += 1;
-  for (var i = 0; i < products.length; i++) {
-    if (event.target.alt === products[i].name){
-      products[i].clicks +=1;
-      console.log(event.target.alt + ' has ' + products[i].clicks + ' clicks ' + products[i].views + ' views');
+  for (var i = 0; i < Product.products.length; i++) {
+    if (event.target.alt === Product.products[i].name){
+      Product.products[i].clicks +=1;
+      console.log(event.target.alt + ' has ' + Product.products[i].clicks + ' clicks ' + Product.products[i].views + ' views');
     }
-    displayPics();
   }
+  displayPics();
   }
   function showList() {
-    for (var i = 0; i < products.length; i++) {
+    for (var i = 0; i < Product.products.length; i++) {
       var liEl = document.createElement('li');
-      var conversion = (products[i].clicks / products[i].clicks * 100).toFixed(1);
-      liEl.textContent = products[i].name + ' has ' + products[i].clicks + ' clicks in ' + products[i].views + ' views for a click-through conversion rate of '  + conversion + '%;'
+      var conversion = (Product.products[i].clicks / Product.products[i].clicks * 100).toFixed(1);
+      liEl.textContent = Product.products[i].name + ' has ' + Product.products[i].clicks + ' clicks in ' + Product.products[i].views + ' views for a click-through conversion rate of '  + conversion + '%;'
       
       if (conversion > 49) {
         liEl.style.color = 'white';
