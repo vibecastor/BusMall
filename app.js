@@ -94,7 +94,7 @@ function randomProduct() {
   function showList() {
     for (var i = 0; i < Product.products.length; i++) {
       var liEl = document.createElement('li');
-      var conversion = (Product.products[i].clicks / Product.products[i].clicks * 100).toFixed(1);
+      var conversion = (Product.products[i].clicks / Product.products[i].views * 100).toFixed(1);
       liEl.textContent = Product.products[i].name + ' has ' + Product.products[i].clicks + ' clicks in ' + Product.products[i].views + ' views for a click-through conversion rate of '  + conversion + '%;'
       
       if (conversion > 49) {
@@ -106,7 +106,6 @@ function randomProduct() {
         liEl.style.color = 'white';
         liEl.style.backgroundColor = 'red';
       }
-
       productlist.appendChild(liEl);
     }
   }
